@@ -1,0 +1,23 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+    user : null,
+    loading : false,
+};
+
+export const profileSlice = createSlice({
+  name: "profile",
+  initialState,
+  reducers: {
+    setUser(state,value){
+        state.user = value.payload
+    },
+    setLoading(state,value){
+        state.loading = value.loading
+    }
+  },
+});
+
+export const {setUser, setLoading } = profileSlice.actions;
+
+export default profileSlice.reducer;
