@@ -5,6 +5,8 @@ import { ACCOUNT_TYPE } from "../../../utils/constants";
 import { sendOtp } from "../../../services/operations/authThunk";
 import { useNavigate } from "react-router-dom";
 import { setSignupData } from "../../../slices/authSlice";
+import Tab from "../../Common/Tab";
+import { useDispatch } from "react-redux";
 
 const SignupForm = () => {
   const [formdata, setFormdata] = useState({
@@ -23,7 +25,8 @@ const SignupForm = () => {
     }));
   };
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
@@ -35,6 +38,8 @@ const SignupForm = () => {
       ...formdata,
       accountType,
     };
+
+    console.log(signupData)
 
     dispatch(setSignupData(signupData)); 
     // we are storing all the data , we will hit signup end point once we get the otp from the user, thats why we are keeping the signupdata stored in the state, we will hit signup endpoint from verify code page
@@ -52,9 +57,24 @@ const SignupForm = () => {
 
   };
 
+  const tabdata = [
+    {
+      id:1,
+      name: "Student",
+      type: ACCOUNT_TYPE.STUDENT,
+    },
+    {
+      id:2,
+      name: "Instructor",
+      type: ACCOUNT_TYPE.INSTRUCTOR,
+    }
+  ]
+
+
   return (
     <div>
-    <form>
+      <Tab tabdata ={tabdata} accountType={accountType} setAccountType= {setAccountType}/>
+    <form onSubmit={handleOnSubmit}>
       <div className="flex w-full gap-x-8 mb-4">
         <div>
           <label>
@@ -77,7 +97,7 @@ const SignupForm = () => {
                 required
                 type="text"
                 value={lastName}
-                name ="firstName"
+                name ="lastName"
                 placeholder="Enter last name"
                 onChange={handleOnChange}
                 className="form-style w-full p-2"
@@ -123,7 +143,7 @@ const SignupForm = () => {
                 required
                 type="password"
                 value={confirmPassword}
-                name ="password"
+                name ="confirmPassword"
                 placeholder="Enter Password again"
                 onChange={handleOnChange}
                 className="form-style p-2"
@@ -132,7 +152,10 @@ const SignupForm = () => {
         </div>
       </div>
 
-      <button className=" bg-yellow-50 rounded-lg w-full p-3 mt-4">
+      <button 
+          className=" bg-yellow-50 rounded-lg w-full p-3 mt-4 "
+          type="submit"
+      >
         Create Account
       </button>
     </form>

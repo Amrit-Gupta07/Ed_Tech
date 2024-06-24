@@ -1,8 +1,11 @@
 import React from 'react'
+import ConfirmationModal from '../components/Common/ConfirmationModal'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      {/* <ConfirmationModal/> */}
+    </div>
   )
 }
 

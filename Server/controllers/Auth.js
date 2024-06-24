@@ -71,7 +71,7 @@ exports.signup = async (req, res) => {
             contactNumber,
             otp
         } = req.body;
-
+        console.log("ACCOUNT TYPE.....", accountType)
         //validate krlo
         if (!firstName || !lastName || !email || !password || !confirmPassword || !otp) {
             return res.status(403).json({
