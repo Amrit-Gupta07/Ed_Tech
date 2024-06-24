@@ -1,9 +1,10 @@
 import React from "react";
 
-const IconBtn = ({ text, onClick, children }) => {
+const IconBtn = ({ text, onClick, children ,disabled}) => {
   return (
     <button
       onClick={onClick}
+      disabled = {disabled}
       className={
         "flex items-center bg-yellow-50 rounded-md gap-x-2  py-2 px-5 "
       }

@@ -10,3 +10,7 @@ export const endpoints = {
 export const categories = {
     CATAGORIES_API: BASE_URL + "/course/showAllCategories"
 }
+
+export const settingsEndPoint = {
+    UPDATE_DISPLAY_PICTURE_API : BASE_URL + "/profile/updateDisplayPicture"
+}
