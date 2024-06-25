@@ -1,3 +1,31 @@
+
+
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #afb2bf;
+  }
 .form-style{
-    @apply rounded-lg bg-richblack-700 text-[16px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400
+    @apply rounded-lg bg-richblack-700 text-[16px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 p-3
 }
+
+*::-webkit-scrollbar {
+    width: 3px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #000814;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #afb2bf;
+    border-radius: 10px;
+    visibility: hidden;
+  }
+
+  *:active::-webkit-scrollbar-thumb,
+*:focus::-webkit-scrollbar-thumb,
+*:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+.lable-style {
+    @apply text-[14px] text-richblack-5;
+  }

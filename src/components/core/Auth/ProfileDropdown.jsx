@@ -37,7 +37,7 @@ const ProfileDropdown = () => {
       {open && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="bg-richblack-800 border-richblack-700 rounded-lg border-[1px] absolute top-[120%] right-0 divide-y-[1px] divider-richblack-700 overflow-hidden "
+          className="bg-richblack-800 border-richblack-700 rounded-lg border-[1px] absolute top-[120%] right-0 divide-y-[1px] divider-richblack-700 overflow-hidden z-[1000] "
           ref={ref}
         >
           <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
