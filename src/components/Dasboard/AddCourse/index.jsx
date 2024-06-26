@@ -4,8 +4,8 @@ import RenderSteps from "./RenderSteps";
 const AddCourse = () => {
   return (
     <>
-      <div className="flex w-full">
-        <div className="flex flex-col">
+      <div className="flex w-full gap-x-6">
+        <div className="flex flex-col flex-1">
           <h1 className="mb-14 text-3xl font-medium text-richblack-5">
             Add Course
           </h1>
@@ -13,7 +13,7 @@ const AddCourse = () => {
             <RenderSteps/>
           </div>
         </div>
-        <div className="bg-richblack-800 text-richblack-5 border-[1px] border-richblack-700 max-w-[400px] rounded-lg p-4
+        <div className="sticky top-10 bg-richblack-800 text-richblack-5 border-[1px] max-h-[380px] border-richblack-700 max-w-[400px] rounded-lg p-4
         hidden lg:block">
           <p className="text-lg mb-6">⚡ Course Upload Tips</p>
           <ul className="ml-5 list-item list-disc space-y-4 text-xs text-richblack-5">
