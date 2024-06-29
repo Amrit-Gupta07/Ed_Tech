@@ -10,20 +10,25 @@ const RequirementsFields = ({
   setValue,
   getValues,
 }) => {
-  const { course } = useSelector((state) => state.course);
+  const { course, editCourse } = useSelector((state) => state.course);
 
   const [requirement, setRequirement] = useState("");
   const [requirementList, setRequirementList] = useState([]);
 
   useEffect(() => {
+    if (editCourse) {
+      setRequirementList(course?.instructions)
+    }
     register(name, { required: true });
   }, []);
 
+
+  useEffect(() => {
+    setValue(name, requirementList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requirementList]);
   const handleOnChange = (e) => {
-    // const req = e.target.value.trim();
-    // if (req) {
     setRequirement(e.target.value);
-    // }
   };
   const handleAddRequirement = () => {
     if (requirement) {
@@ -62,7 +67,10 @@ const RequirementsFields = ({
       {requirementList.length > 0 && (
         <ul className="list-disc">
           {requirementList.map((item, index) => (
-            <li key={index} className="flex items-center text-richblack-5 gap-x-2">
+            <li
+              key={index}
+              className="flex items-center text-richblack-5 gap-x-2"
+            >
               <p>{item}</p>
               <button
                 type="button"

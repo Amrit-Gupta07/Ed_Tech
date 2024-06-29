@@ -17,7 +17,7 @@ const SignupForm = () => {
     confirmPassword: "",
   });
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
-  const {firstName, lastName, email, password, confirmPassword} = formdata
+  const { firstName, lastName, email, password, confirmPassword } = formdata;
   const handleOnChange = (e) => {
     setFormdata((prevData) => ({
       ...prevData,
@@ -26,7 +26,7 @@ const SignupForm = () => {
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
@@ -39,126 +39,132 @@ const SignupForm = () => {
       accountType,
     };
 
-    console.log(signupData)
+    console.log(signupData);
 
-    dispatch(setSignupData(signupData)); 
+    dispatch(setSignupData(signupData));
     // we are storing all the data , we will hit signup end point once we get the otp from the user, thats why we are keeping the signupdata stored in the state, we will hit signup endpoint from verify code page
 
     dispatch(sendOtp(formdata.email, navigate));
 
     setFormdata({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-    })
-    setAccountType(ACCOUNT_TYPE.STUDENT)
-
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setAccountType(ACCOUNT_TYPE.STUDENT);
   };
 
   const tabdata = [
     {
-      id:1,
+      id: 1,
       name: "Student",
       type: ACCOUNT_TYPE.STUDENT,
     },
     {
-      id:2,
+      id: 2,
       name: "Instructor",
       type: ACCOUNT_TYPE.INSTRUCTOR,
-    }
-  ]
-
+    },
+  ];
 
   return (
     <div>
-      <Tab tabdata ={tabdata} accountType={accountType} setAccountType= {setAccountType}/>
-    <form onSubmit={handleOnSubmit}>
-      <div className="flex w-full gap-x-8 mb-4">
-        <div>
-          <label>
-            <p className="text-richblack-5 mb-1 text-[0.875rem]">First Name</p>
-            <input 
+      <Tab
+        tabdata={tabdata}
+        accountType={accountType}
+        setAccountType={setAccountType}
+      />
+      <form onSubmit={handleOnSubmit}>
+        <div className="flex w-full gap-x-8 mb-4">
+          <div>
+            <label>
+              <p className="text-richblack-5 mb-1 text-[0.875rem]">
+                First Name
+              </p>
+              <input
                 required
                 type="text"
                 value={firstName}
-                name ="firstName"
+                name="firstName"
                 placeholder="Enter first name"
                 onChange={handleOnChange}
                 className="form-style p-2"
-            />
+              />
             </label>
-        </div>
-        <div>
-        <label>
-            <p className="text-richblack-5 mb-1 text-[0.875rem]">Last Name</p>
-            <input 
+          </div>
+          <div>
+            <label>
+              <p className="text-richblack-5 mb-1 text-[0.875rem]">Last Name</p>
+              <input
                 required
                 type="text"
                 value={lastName}
-                name ="lastName"
+                name="lastName"
                 placeholder="Enter last name"
                 onChange={handleOnChange}
                 className="form-style w-full p-2"
-            />
+              />
             </label>
+          </div>
         </div>
-      </div>
 
-      <div className="mb-4 w-full">
-      <label>
+        <div className="mb-4 w-full">
+          <label>
             <p className="text-richblack-5 mb-1 text-[0.875rem]">Email</p>
-            <input 
-                required
-                type="email"
-                value={email}
-                name ="email"
-                placeholder="Enter Email"
-                onChange={handleOnChange}
-                className="form-style w-full p-2"
+            <input
+              required
+              type="email"
+              value={email}
+              name="email"
+              placeholder="Enter Email"
+              onChange={handleOnChange}
+              className="form-style w-full p-2"
             />
-            </label>
-      </div>
+          </label>
+        </div>
 
-      <div className="flex gap-x-8">
-        <div>
-        <label>
-            <p className="text-richblack-5 mb-1 text-[0.875rem]">Password</p>
-            <input 
+        <div className="flex gap-x-8">
+          <div>
+            <label>
+              <p className="text-richblack-5 mb-1 text-[0.875rem]">Password</p>
+              <input
                 required
                 type="password"
                 value={password}
-                name ="password"
+                name="password"
                 placeholder="Enter Password"
                 onChange={handleOnChange}
                 className="form-style p-2"
-            />
+              />
             </label>
-        </div>
-        <div>
-        <label>
-            <p className="text-richblack-5 mb-1 text-[0.875rem]">Confirm Password</p>
-            <input 
+          </div>
+          <div>
+            <label>
+              <p className="text-richblack-5 mb-1 text-[0.875rem]">
+                Confirm Password
+              </p>
+              <input
                 required
                 type="password"
                 value={confirmPassword}
-                name ="confirmPassword"
+                name="confirmPassword"
                 placeholder="Enter Password again"
                 onChange={handleOnChange}
                 className="form-style p-2"
-            />
+              />
             </label>
+          </div>
         </div>
-      </div>
 
-      <button 
+        <button
           className=" bg-yellow-50 rounded-lg w-full p-3 mt-4 "
           type="submit"
-      >
-        Create Account
-      </button>
-    </form>
+        >
+          Create Account
+        </button>
+      </form>
     </div>
   );
 };

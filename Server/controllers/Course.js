@@ -22,8 +22,13 @@ exports.createCourse = async (req, res) => {
 
 		// Get thumbnail image from request files
 		const thumbnail = req.files.thumbnailImage;
+		console.log(thumbnail)
+		console.log(_tag)
+		console.log(_instructions)
 		const tag = JSON.parse(_tag)
 		const instructions = JSON.parse(_instructions)
+		console.log(tag)
+		console.log(instructions)
 		// Check if any of the required fields are missing
 		if (
 			!courseName ||
@@ -40,6 +45,19 @@ exports.createCourse = async (req, res) => {
 				message: "All Fields are Mandatory",
 			});
 		}
+		console.log(courseName);
+		console.log(courseDescription);
+		console.log(whatYouWillLearn);
+		console.log(price);
+		console.log(tag);
+		console.log(thumbnail);
+		console.log(category);
+		console.log(category);
+		console.log(instructions);
+
+		
+
+		
 		if (!status || status === undefined) {
 			status = "Draft";
 		}

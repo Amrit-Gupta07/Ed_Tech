@@ -12,7 +12,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
         if(editCourse){
             setChips(course?.tag)
         }
-        register(name,{required:true, Validite: (value) => value.length})
+        register(name,{required:true, Validite: (value) => value.length > 0})
     },[])
     useEffect( () => {
         setValue(name,chips)
@@ -46,6 +46,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
                         {chip}
                         <button
                             onClick={() => handleDeleteChip(index)}
+                            type='button'
                         >
                             <MdClose className="text-sm" />
                             
@@ -55,6 +56,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
             }
         </div>
         <input
+            type='text'
             name = {name}
             id = {name}
             placeholder={placeholder}

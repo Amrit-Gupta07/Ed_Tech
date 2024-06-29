@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheck } from "react-icons/fa"
 import { useSelector } from "react-redux";
 import CourseInformationForm from "./CourseInformation/CourseInformationForm";
+import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
 
 const RenderSteps = () => {
   const {step} = useSelector(state => state.course)
@@ -26,9 +27,9 @@ const RenderSteps = () => {
                 steps.map((item) =>(
                   <>
                     <button
-                     className={`aspect-square rounded-full w-[34px] border-[1px]
+                     className={`aspect-square rounded-full w-[34px] border-[1px] grid place-items-center
                       ${item.id === step ? 'bg-yellow-900 text-yellow-50 border-yellow-50' 
-                        : "border-richblack-700 bg-richblack-800 text-richblack-300"}`}
+                        : "border-richblack-700 bg-richblack-800 text-richblack-300"} ${item.id < step && 'bg-yellow-50'}`}
                         >
                         {
                           item.id < step ? (

@@ -16,3 +16,8 @@ export const settingsEndPoint = {
     UPDATE_PROFILE : BASE_URL + "/profile/updateProfile",
     CHANGE_PASSWORD: BASE_URL + "/auth/changepassword"
 }
+
+export const coursesEndPoint = {
+    CREATE_COURSE_API : BASE_URL + "/course/createcourse",
+    EDIT_COURSE_API : BASE_URL + '/course/editcourse'
+}
