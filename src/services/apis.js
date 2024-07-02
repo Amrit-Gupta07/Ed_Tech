@@ -22,5 +22,7 @@ export const coursesEndPoint = {
     EDIT_COURSE_API : BASE_URL + '/course/editcourse',
     ADD_SECTION_API : BASE_URL + '/course/addSection',
     UPDATE_SECTION_API : BASE_URL + '/course/updateSection',
-    FULL_COURSE_DETAILS : BASE_URL + '/course/getFullCourseDetails'
+    FULL_COURSE_DETAILS : BASE_URL + '/course/getFullCourseDetails',
+    DELETE_SECTION : BASE_URL + '/course/deleteSection',
+    DELETE_SUB_SECTION: BASE_URL + '/course/deleteSubSection',
 }

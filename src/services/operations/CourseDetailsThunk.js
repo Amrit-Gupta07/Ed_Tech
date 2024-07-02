@@ -8,6 +8,8 @@ const {
     ADD_SECTION_API,
     UPDATE_SECTION_API,
     FULL_COURSE_DETAILS,
+    DELETE_SECTION,
+    DELETE_SUB_SECTION,
 } = coursesEndPoint;
 
 export const addCourseDetails = async (data, token) => {
@@ -108,6 +110,49 @@ export const getFullCourseDetails = async(courseId, token) => {
             Authorisation: `Bearer ${token}`,
         });
         console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response);
+        if (!response?.data?.success) {
+            throw new Error("Could Not edit Course Details");
+        }
+        
+        result = response?.data?.data;
+    } catch (error) {
+        console.log("COURSE_FULL_DETAILS_API API ERROR............", error);
+        result = error.response.data
+    }
+    toast.dismiss(toastId);
+    return result;
+}
+
+export const deleteSection = async(sectionId,courseId,token) => {
+    let result = null;
+    const toastId = toast.loading("Loading...");
+
+    try {
+        const response = await apiConnector("POST", DELETE_SECTION,{ sectionId,courseId}, {
+            Authorisation: `Bearer ${token}`,
+        });
+        console.log("SECTION_DELETE API RESPONSE............", response);
+        if (!response?.data?.success) {
+            throw new Error("Could Not edit Course Details");
+        }
+        
+        result = response?.data?.data;
+    } catch (error) {
+        console.log("COURSE_FULL_DETAILS_API API ERROR............", error);
+        result = error.response.data
+    }
+    toast.dismiss(toastId);
+    return result;
+}
+export const deleteSubSection = async(sectionId,subSectionId,token) => {
+    let result = null;
+    const toastId = toast.loading("Loading...");
+
+    try {
+        const response = await apiConnector("POST", DELETE_SUB_SECTION,{ sectionId,subSectionId}, {
+            Authorisation: `Bearer ${token}`,
+        });
+        console.log("SECTION_DELETE API RESPONSE............", response);
         if (!response?.data?.success) {
             throw new Error("Could Not edit Course Details");
         }
