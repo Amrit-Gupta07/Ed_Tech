@@ -27,6 +27,7 @@ const RenderSteps = () => {
                 steps.map((item) =>(
                   <>
                     <button
+                    key={item.id}
                      className={`aspect-square rounded-full w-[34px] border-[1px] grid place-items-center
                       ${item.id === step ? 'bg-yellow-900 text-yellow-50 border-yellow-50' 
                         : "border-richblack-700 bg-richblack-800 text-richblack-300"} ${item.id < step && 'bg-yellow-50'}`}
@@ -42,7 +43,7 @@ const RenderSteps = () => {
                     </button>
                     {
                       item.id != steps.length && (
-                        <div className={`border-dashed border-b-2 w-[33%] 
+                        <div  className={`border-dashed border-b-2 w-[33%] 
                         ${item.id < step ? 'border-yellow-50' : 'border-richblack-500'}`}>
                           
                         </div>
@@ -58,7 +59,7 @@ const RenderSteps = () => {
             steps.map((item) => (
               <>
                  <div className={`text-sm font-medium  flex flex-col items-center min-w-[130px]
-                  ${item.id<=step ? 'text-richblack-5' : 'text-richblack-500'}`}>
+                  ${item.id<=step ? 'text-richblack-5' : 'text-richblack-500'}`} key={item.id}>
                   
                     {item.title}
                  </div>

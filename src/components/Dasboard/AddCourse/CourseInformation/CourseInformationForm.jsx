@@ -38,6 +38,7 @@ const CourseInformationForm = () => {
   const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    
     (async () => {
       setLoading(true);
 
@@ -50,6 +51,7 @@ const CourseInformationForm = () => {
 
       setLoading(false);
     })();
+    
     if (editCourse) {
       setValue("courseName", course.courseName);
       setValue("courseDescription", course.courseDescription);
@@ -380,7 +382,7 @@ const CourseInformationForm = () => {
             {!loading &&
               courseCategories?.map((item) => {
                 return (
-                  <option value={item._id} key={item.id}>
+                  <option  value={item._id} key={item._id}>
                     {item.name}
                   </option>
                 );
@@ -451,6 +453,12 @@ const CourseInformationForm = () => {
               Continue Without Saving
             </button>
           )}
+          <button onClick={() => dispatch(setStep(2))}
+              className="rounded-lg bg-richblack-400 text-richblack-900 p-2"
+          
+          >
+            Hahaa
+          </button>
           <IconBtn text={editCourse ? "Save Changes" : "Next"}>
             <MdNavigateNext />
           </IconBtn>

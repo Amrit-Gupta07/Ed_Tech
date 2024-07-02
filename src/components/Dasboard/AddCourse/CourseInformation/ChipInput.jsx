@@ -42,7 +42,7 @@ const ChipInput = ({name, label, placeholder, register, errors, setValue, getVal
         <div className='flex gap-2 flex-wrap'>
             {
                 chips.map((chip,index) =>(
-                    <div className='flex bg-yellow-100 rounded-full px-2'>
+                    <div className='flex bg-yellow-100 rounded-full px-2' key={index}>
                         {chip}
                         <button
                             onClick={() => handleDeleteChip(index)}

@@ -10,6 +10,7 @@ const {
   getAllCourses,
   getCourseDetails,
   editCourse,
+  getFullCourseDetails
 
 } = require("../controllers/Course")
 
@@ -69,6 +70,7 @@ router.get("/getAllCourses", getAllCourses)
 router.post("/getCourseDetails", getCourseDetails)
 // Edit Course routes
 router.post("/editCourse", auth, isInstructor, editCourse)
+router.post("/getFullCourseDetails",auth,getFullCourseDetails)
 // ********************************************************************************************************
 //                                      Category routes (Only by Admin)
 // ********************************************************************************************************

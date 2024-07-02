@@ -19,5 +19,8 @@ export const settingsEndPoint = {
 
 export const coursesEndPoint = {
     CREATE_COURSE_API : BASE_URL + "/course/createcourse",
-    EDIT_COURSE_API : BASE_URL + '/course/editcourse'
+    EDIT_COURSE_API : BASE_URL + '/course/editcourse',
+    ADD_SECTION_API : BASE_URL + '/course/addSection',
+    UPDATE_SECTION_API : BASE_URL + '/course/updateSection',
+    FULL_COURSE_DETAILS : BASE_URL + '/course/getFullCourseDetails'
 }

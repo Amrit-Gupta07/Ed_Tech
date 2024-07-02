@@ -19,10 +19,10 @@ const Sidebar = () => {
     <>
     <div className=" flex h-[calc(100vh -3.5rem)] min-w-[220px] py-10 bg-richblack-800  flex-col border-r-[1px] border-r-richblack-400 ">
       <div className="flex flex-col  ">
-        {sidebarLinks.map((link) => {
+        {sidebarLinks.map((link,index) => {
           if (link.type && link.type !== user?.accountType) return null;
 
-          return <SidebarLink link={link} iconName={link.icon} />;
+          return <SidebarLink link={link} key={index} iconName={link.icon} />;
         })}
       </div>
       <div className="bg-richblack-700 h-[1px] mt-6 mb-6 mx-auto w-10/12"></div>
