@@ -100,21 +100,22 @@ const NestedView = ({ handleEditSectionName }) => {
                     
                   </p>
                 </div>
-                <div className="flex gap-x-2 ">
+                <div className="flex gap-x-2 " onClick={(e) => e.stopPropagation()}>
                   <button>
                     <MdEdit className="text-xl text-richblack-300" />
                   </button>
                   <button
-                    onClick={() =>
+                    onClick={() =>{
                       setConfirmationModal({
                         text1: "Are You Sure",
                         text2: "Selected SubSection will be deleted",
                         btn1Text: "Cancel",
                         btn2Text: "Delete",
                         btn1Handler: () => setConfirmationModal(null),
-                        btn2Handler: () =>
-                          handleDeleteSubSection(section._id, data._id),
+                        btn2Handler: () => handleDeleteSubSection(section._id, data._id),
                       })
+
+                    }
                     }
                   >
                     <RiDeleteBin6Line className="text-xl text-richblack-300" />
@@ -122,17 +123,21 @@ const NestedView = ({ handleEditSectionName }) => {
                 </div>
               </div>
             ))}
-            <button className="flex items-center gap-x-1 text-yellow-50 mt-2">
+            <button 
+            className="flex items-center gap-x-1 text-yellow-50 mt-2"
+            onClick={() => setAddSubSection({
+                sectionId : section._id,
+            })}
+            >
               <FaPlus className="text-lg" />
               <p>Add Lecture</p>
             </button>
           </div>
         </details>
       ))}
-      {
-        console.log("VIEWING SUB SECTION",viewSubSection)
-      }
+      
       {viewSubSection && <SubSectionModal modalData={viewSubSection} view= {true} setModalData={setViewSubSection}/>}
+      {addSubSection && <SubSectionModal modalData={addSubSection} add= {true} setModalData={setAddSubSection}/>}
       {confirmationModal && <ConfirmationModal modeldata={confirmationModal} />}
     </div>
   );

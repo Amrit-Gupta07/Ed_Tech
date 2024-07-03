@@ -6,6 +6,8 @@ import { RxCross2 } from "react-icons/rx"
 import { useDispatch, useSelector } from "react-redux"
 import Upload from '../Upload'
 import IconBtn from '../../../Common/IconBtn'
+import { createSubSection } from '../../../../services/operations/CourseDetailsThunk'
+import { setCourse } from '../../../../slices/courseSlice'
 
 const SubSectionModal = ({
     modalData,
@@ -16,24 +18,48 @@ const SubSectionModal = ({
 
 }) => {
     const{
-        register,setValue,getValues, formState:{errors}
+        register,setValue,getValues,handleSubmit, formState:{errors}
     } = useForm()
     
     const[loading,setLoading] = useState(false)
     const {token} = useSelector(state => state.auth)
     const {course} = useSelector(state => state.course)
-    console.log("Modal Data........", modalData)
+    const dispatch = useDispatch();
+    // console.log("Modal Data........", modalData)
 
     useEffect(() => {
 
         if(view ){
-            console.log("View Testing",modalData)
+            // console.log("View Testing",modalData)
             setValue("lectureTitle",modalData.title)
             setValue("lectureDescription",modalData.description)
             setValue("lectureVideo",modalData.videoUrl)
-            
         }
+
     },[])
+
+    const onSubmit = async (data) => {
+
+        const formData = new FormData()
+
+        formData.append("sectionId",modalData.sectionId)
+        formData.append("title",data.lectureTitle)
+        formData.append("description",data.lectureDescription)
+        formData.append("video",data.lectureVideo)
+
+
+        const result = await createSubSection(formData,token)
+
+        if(result){
+            const updatedSection= course?.courseContent?.map((section) => section._id === modalData.sectionId ? result : section)
+
+            const updatedCourse = {...course,courseContent:updatedSection}
+            console.log("Printing Updated",updatedCourse);
+            dispatch(setCourse(updatedCourse))
+        }
+        setModalData(null)
+
+    }
 
   return (
 
@@ -50,7 +76,7 @@ const SubSectionModal = ({
         </button>
         </div>
 
-        <form className='space-y-8 mt-6 p-6'>
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-8 mt-6 p-6'>
             <Upload
               name={`lectureVideo`}
               label={`Lecture Video`}
@@ -101,8 +127,9 @@ const SubSectionModal = ({
                 !view && (
                     <div>
                         <IconBtn
-                        disabled={loading}
+                            disabled={loading}
                            text={loading ? "Loading..." : edit ? "Save Changes" : "Save"}
+                           
                         />
                     </div>
                 )
