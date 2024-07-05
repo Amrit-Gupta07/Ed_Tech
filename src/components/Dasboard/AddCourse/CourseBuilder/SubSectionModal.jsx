@@ -6,7 +6,7 @@ import { RxCross2 } from "react-icons/rx"
 import { useDispatch, useSelector } from "react-redux"
 import Upload from '../Upload'
 import IconBtn from '../../../Common/IconBtn'
-import { createSubSection } from '../../../../services/operations/CourseDetailsThunk'
+import { createSubSection, updateSubSection } from '../../../../services/operations/CourseDetailsThunk'
 import { setCourse } from '../../../../slices/courseSlice'
 
 const SubSectionModal = ({
@@ -25,11 +25,12 @@ const SubSectionModal = ({
     const {token} = useSelector(state => state.auth)
     const {course} = useSelector(state => state.course)
     const dispatch = useDispatch();
+    console.log("course................", course);
     // console.log("Modal Data........", modalData)
 
     useEffect(() => {
 
-        if(view ){
+        if(view || edit ){
             // console.log("View Testing",modalData)
             setValue("lectureTitle",modalData.title)
             setValue("lectureDescription",modalData.description)
@@ -38,7 +39,72 @@ const SubSectionModal = ({
 
     },[])
 
+    const isFormUpdated = () => {
+        const currentValues = getValues()
+        console.log("changes after editing form values:", currentValues)
+        console.log("Modal form values:", modalData)
+
+        if (
+          currentValues.lectureTitle !== modalData.title ||
+          currentValues.lectureDescription !== modalData.description ||
+          currentValues.lectureVideo !== modalData.videoUrl
+        ) {
+          return true
+        }
+
+        return false
+      }
     const onSubmit = async (data) => {
+
+
+        if(edit){
+            console.log("wcwfcwcfwdfw",isFormUpdated());
+            if(isFormUpdated()){
+                console.log("Yaa form is updated");
+                const currentValues = getValues()
+                const formData = new FormData()
+                formData.append("sectionId",modalData.sectionId)
+                formData.append("subSectionId",modalData._id)
+
+
+
+                if(currentValues.lectureTitle !== modalData.title){
+                    console.log("Lecture Title Changed");
+
+                    formData.append("title",currentValues.lectureTitle)
+                }
+                if(currentValues.lectureDescription !== modalData.description){
+                    console.log("Lecture Desc Changed");
+
+                    formData.append("description",currentValues.lectureDescription)
+                }
+                if(currentValues.lectureVideo !== modalData.videoUrl){
+                    formData.append("video",currentValues.lectureVideo)
+                    console.log("Lecture Video Changed");
+                    console.log("Lecture Video.........",currentValues.lectureVideo);
+                }
+
+                const result = await updateSubSection(formData,token)
+                setLoading(true)
+
+                if(result){
+                    const updatedSection = course?.courseContent?.map((section) => section._id === modalData.sectionId ? result : section)
+                    const updatedCourse = {...course,courseContent:updatedSection}
+                    dispatch(setCourse(updatedCourse))
+                }
+                setModalData(null)
+                setLoading(false)
+                
+
+            }
+
+            else{
+                toast.error("No Changes were made")
+                
+            }
+
+            return;
+        }
 
         const formData = new FormData()
 
@@ -46,7 +112,7 @@ const SubSectionModal = ({
         formData.append("title",data.lectureTitle)
         formData.append("description",data.lectureDescription)
         formData.append("video",data.lectureVideo)
-
+        console.log(data.lectureVideo);
 
         const result = await createSubSection(formData,token)
 
@@ -125,12 +191,13 @@ const SubSectionModal = ({
             </div>
             {
                 !view && (
-                    <div>
+                    <div className='flex justify-end'>
                         <IconBtn
                             disabled={loading}
                            text={loading ? "Loading..." : edit ? "Save Changes" : "Save"}
                            
                         />
+
                     </div>
                 )
             }

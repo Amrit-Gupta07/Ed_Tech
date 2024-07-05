@@ -383,6 +383,9 @@ const CourseInformationForm = () => {
               courseCategories?.map((item) => {
                 return (
                   <option  value={item._id} key={item._id}>
+                    {
+                    console.log(item._id)
+              }
                     {item.name}
                   </option>
                 );

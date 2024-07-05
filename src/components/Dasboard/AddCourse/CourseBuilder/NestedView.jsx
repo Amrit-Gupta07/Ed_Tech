@@ -90,9 +90,7 @@ const NestedView = ({ handleEditSectionName }) => {
                 key={data._id}
                 onClick={() => setViewSubSection(data)}
               >
-                {
-                    console.log("DATA....",data)
-                }
+
                 <div className="flex gap-x-3 py-2">
                   <RxDropdownMenu className="text-2xl text-richblack-300" />
                   <p className="text-md font-bold text-richblack-100">
@@ -102,7 +100,9 @@ const NestedView = ({ handleEditSectionName }) => {
                 </div>
                 <div className="flex gap-x-2 " onClick={(e) => e.stopPropagation()}>
                   <button>
-                    <MdEdit className="text-xl text-richblack-300" />
+                    <MdEdit 
+                    onClick={() => setEditSubSection({...data,sectionId: section._id})}
+                    className="text-xl text-richblack-300" />
                   </button>
                   <button
                     onClick={() =>{
@@ -136,8 +136,10 @@ const NestedView = ({ handleEditSectionName }) => {
         </details>
       ))}
       
-      {viewSubSection && <SubSectionModal modalData={viewSubSection} view= {true} setModalData={setViewSubSection}/>}
-      {addSubSection && <SubSectionModal modalData={addSubSection} add= {true} setModalData={setAddSubSection}/>}
+      {viewSubSection && <SubSectionModal modalData= {viewSubSection} view = {true} setModalData={setViewSubSection}/>}
+      {addSubSection &&  <SubSectionModal modalData= {addSubSection}  add = {true} setModalData={setAddSubSection}/>}
+      {editSubSection && <SubSectionModal modalData= {editSubSection} edit = {true} setModalData={setEditSubSection}/>}
+
       {confirmationModal && <ConfirmationModal modeldata={confirmationModal} />}
     </div>
   );

@@ -7,12 +7,15 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { createSection,updateSection } from "../../../../services/operations/CourseDetailsThunk";
 import NestedView from "./NestedView";
+import {  } from "react-router-dom";
 
 const CourseBuilderForm = () => {
   const dispatch = useDispatch();
   const [editSectionName, setEditSectionName] = useState(null);
   const { course } = useSelector((state) => state.course);
   const { token } = useSelector((state) => state.auth);
+
+  
 
   const {
     register,
@@ -125,7 +128,10 @@ const CourseBuilderForm = () => {
               Back
             </button>
 
-            <IconBtn text={`Next`}>
+            <IconBtn text={`Next`} 
+            onClick={() => {
+              dispatch(setStep(3))
+            }}>
               <MdNavigateNext />
             </IconBtn>
           </div>

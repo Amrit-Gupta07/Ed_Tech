@@ -26,4 +26,5 @@ export const coursesEndPoint = {
     DELETE_SECTION : BASE_URL + '/course/deleteSection',
     DELETE_SUB_SECTION: BASE_URL + '/course/deleteSubSection',
     CREATE_SUB_SECTION :BASE_URL + '/course/addSubSection',
+    UPDATE_SUB_SECTION : BASE_URL + '/course/updateSubSection',
 }

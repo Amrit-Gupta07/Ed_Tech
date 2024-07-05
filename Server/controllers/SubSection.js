@@ -69,8 +69,8 @@ exports.createSubSection = async (req, res) => {
 
 exports.updateSubSection = async (req, res) => {
     try {
-        const { sectionId, title, description } = req.body
-        const subSection = await SubSection.findById(sectionId)
+        const { sectionId, subSectionId,title, description } = req.body
+        const subSection = await SubSection.findById(subSectionId)
 
         if (!subSection) {
             return res.status(404).json({
@@ -86,13 +86,20 @@ exports.updateSubSection = async (req, res) => {
         if (description !== undefined) {
             subSection.description = description
         }
+        console.log("FIRST.........................");
         if (req.files && req.files.video !== undefined) {
+        console.log("SECOND.........................");
+
             const video = req.files.video
             const uploadDetails = await uploadImageToCloudinary(
                 video,
                 process.env.FOLDER_NAME
             )
+
+            console.log("FILE UPLOADING .......FILE UPLOADING");
             subSection.videoUrl = uploadDetails.secure_url
+            console.log("................................................................");
+            console.log("URL.....",uploadDetails.secure_url);
             subSection.timeDuration = `${uploadDetails.duration}`
         }
 
@@ -102,7 +109,7 @@ exports.updateSubSection = async (req, res) => {
         return res.json({
             success: true,
             data: updatedSection,
-            message: "Section updated successfully",
+            message: "Section updated successfully !!",
         })
     } catch (error) {
         console.error(error)
