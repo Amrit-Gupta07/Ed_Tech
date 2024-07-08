@@ -456,12 +456,7 @@ const CourseInformationForm = () => {
               Continue Without Saving
             </button>
           )}
-          <button onClick={() => dispatch(setStep(2))}
-              className="rounded-lg bg-richblack-400 text-richblack-900 p-2"
-          
-          >
-            Hahaa
-          </button>
+
           <IconBtn text={editCourse ? "Save Changes" : "Next"}>
             <MdNavigateNext />
           </IconBtn>

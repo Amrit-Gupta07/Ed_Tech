@@ -26,8 +26,9 @@ const PublishCourse = () => {
     }
   }, []);
   const OnSubmit = async () => {
-;
+    console.log("save");
     const currentValues = getValues();
+    console.log(currentValues);
 
     let courseStatus;
     if (currentValues.publishCourse) {
@@ -35,14 +36,15 @@ const PublishCourse = () => {
     } else {
       courseStatus = COURSE_STATUS.DRAFT;
     }
+    console.log(courseStatus);
     if (
       (course?.status === COURSE_STATUS.PUBLISHED &&
         courseStatus === COURSE_STATUS.PUBLISHED) ||
       (course?.status === COURSE_STATUS.DRAFT &&
         courseStatus === COURSE_STATUS.DRAFT)
     ) {
-      // dispatch(resetCourseState())
-      // navigate("/dashboard/my-courses")
+      dispatch(resetCourseState())
+      navigate("/dashboard/my-courses")
       return;
     }
     const formData = new FormData();
@@ -55,8 +57,8 @@ const PublishCourse = () => {
 
     const result = await editCourseDetails(formData, token);
     if (result) {
-      // dispatch(resetCourseState())
-      // navigate("/dashboard/my-courses")
+      dispatch(resetCourseState())
+      navigate("/dashboard/my-courses")
       return;
     }
   };

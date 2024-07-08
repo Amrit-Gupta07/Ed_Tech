@@ -27,6 +27,8 @@ export const courseSlice = createSlice({
     }, 
     resetCourseState : (state,action) => {
         state.course = null
+        state.step = 1
+        state.editCourse = false
     }
 
   },
