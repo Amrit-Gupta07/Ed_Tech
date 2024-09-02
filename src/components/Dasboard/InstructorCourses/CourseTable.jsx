@@ -14,6 +14,7 @@ import { formatDate } from "../../../services/formatDate";
 import { COURSE_STATUS } from "../../../utils/constants";
 import { deleteCourse, fetchInstructorCourses } from "../../../services/operations/CourseDetailsThunk";
 import ConfirmationModal from '../../Common/ConfirmationModal'
+
 const CourseTable = ({ courses, setCourses }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()

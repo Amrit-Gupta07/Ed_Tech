@@ -10,10 +10,11 @@ const Template = ({ title, description1, description2, image, formType }) => {
         <div className="">
           <h1 className="text-white text-3xl font-bold">{title}</h1>
           <p className="text-richblack-300">{description1}</p>
+
           <p className="font-edu-sa font-bold text-blue-100 italic">
             {description2}
           </p>
-
+          
           {formType === "signup" ? <SignupForm /> : <LoginForm />}
         </div>
       </div>

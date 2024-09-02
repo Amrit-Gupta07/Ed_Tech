@@ -1,31 +1,35 @@
-
-
 * {
-    scrollbar-width: auto;
-    scrollbar-color: #afb2bf;
-  }
-.form-style{
-    @apply rounded-lg bg-richblack-700 text-[16px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 p-3
+  scrollbar-width: auto;
+  scrollbar-color: #afb2bf;
+}
+.form-style {
+  @apply rounded-lg bg-richblack-700 text-[16px] text-richblack-5 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 p-3;
 }
 
 *::-webkit-scrollbar {
-    width: 3px;
-  }
-  *::-webkit-scrollbar-track {
-    background: #000814;
-  }
+  width: 3px;
+}
+*::-webkit-scrollbar-track {
+  background: #000814;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #afb2bf;
-    border-radius: 10px;
-    visibility: hidden;
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #afb2bf;
+  border-radius: 10px;
+  visibility: hidden;
+}
 
-  *:active::-webkit-scrollbar-thumb,
+*:active::-webkit-scrollbar-thumb,
 *:focus::-webkit-scrollbar-thumb,
 *:hover::-webkit-scrollbar-thumb {
   visibility: visible;
 }
 .lable-style {
-    @apply text-[14px] text-richblack-5;
-  }
+  @apply text-[14px] text-richblack-5;
+}
+.yellowButton {
+  @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900;
+}
+.blackButton {
+  @apply cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5;
+}

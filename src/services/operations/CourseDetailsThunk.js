@@ -118,14 +118,14 @@ export const getFullCourseDetails = async(courseId, token) => {
             throw new Error("Could Not edit Course Details");
         }
         
-        result = response?.data?.data;
+        result = response?.data;
     } catch (error) {
         console.log("COURSE_FULL_DETAILS_API API ERROR............", error);
         result = error.response.data
     }
     toast.dismiss(toastId);
     return result;
-}
+}    
 
 export const deleteSection = async(sectionId,courseId,token) => {
     let result = null;

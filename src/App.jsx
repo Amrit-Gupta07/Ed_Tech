@@ -21,6 +21,7 @@ import EnrolledCourses from "./components/Dasboard/EnrolledCourses";
 import Instructor from "./components/Dasboard/Instructor";
 import AddCourse from "./components/Dasboard/AddCourse/index";
 import EditCourse from "./components/Dasboard/EditCourse/index";
+import CourseDetails from "./pages/CourseDetails";
 function App() {
   const {user} = useSelector(state => state.profile)
   return (
@@ -30,10 +31,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/signup" element={<Signup />} /> */}
-        {/* <Route path="/login" element={<Signin />} /> */}
         <Route path="/verify-email" element={<VerifyEmail />} />
-
+        <Route path="/courses/:courseId" element= {<CourseDetails/>}/>
         <Route
           path="/login"
           element={
